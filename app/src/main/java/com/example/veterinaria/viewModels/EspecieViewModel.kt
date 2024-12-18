@@ -11,12 +11,12 @@ class EspecieViewModel : ViewModel() {
     private val _especie = MutableLiveData<Especie>()
     val raza: LiveData<Especie> = _especie
 
-    fun setEspecie(id: Int, nombre: String) {
-        _especie.value = Raza(id, nombre)
+    fun setEspecie(id: Int, nombre: String, razas: List<Raza>) {
+        _especie.value = Especie(id, nombre, razas)
     }
 
     fun obtenerRaza(): List<Raza>? {
-        return _especie.value?.raza
+        return _especie.value?.razas
     }
 
     fun listarMascotasPorEspecie(): List<String> {
