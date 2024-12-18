@@ -8,6 +8,6 @@ data class Mascota(
     val fechaNacimiento: Date, // Usar formato de fecha adecuado
     val foto: String, // Ruta de la foto
     val peso: Double,
-    val raza: Raza,
-    val registroMedico: RegistroMedico
+    //val raza: Raza,
+    //val registroMedico: RegistroMedico
 )
