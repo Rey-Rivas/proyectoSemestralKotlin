@@ -3,22 +3,36 @@ package com.example.veterinaria.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.veterinaria.classes.Especie
-import com.example.veterinaria.classes.Raza
+import com.example.veterinaria.data.models.Especie
+import com.example.veterinaria.data.models.Mascota
+import com.example.veterinaria.data.models.Raza
 
 class RazaViewModel : ViewModel() {
     private val _raza = MutableLiveData<Raza>()
     val raza: LiveData<Raza> = _raza
 
-    fun setRaza(id: Int, nombre: String, especies: List<Especie>) {
-        _raza.value = Raza(id, nombre, especies)
+    private val _mascota = MutableLiveData<List<Mascota>>()
+    val mascota: LiveData<List<Mascota>> = _mascota
+
+    fun setRaza(id: Int, nombre: String, especie: Especie) {
+        _raza.value = Raza(id, nombre, especie)
     }
 
-    fun obtenerEspecie(): List<Especie>? {
-        return _raza.value?.especie
+    fun getEspecie(): Especie {
+        if (_raza.value != null) {
+            return _raza.value!!.especie
+        } else {
+            return Especie(0, "", listOf()) //revisar
+        }
     }
 
-    fun listarMascotasPorRaza(): List<String> {
-        return listOf()
+    fun getMascotasPorRaza(): List<Mascota> {
+        return if (_raza.value != null && _mascota.value != null) {
+            _mascota.value!!.filter { mascotas ->
+                mascotas.raza.idRaza == _raza.value!!.idRaza
+            }
+        } else {
+            listOf()
+        }
     }
 }

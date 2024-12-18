@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.veterinaria.databinding.ItemMascotaBinding
-import com.example.veterinaria.classes.Mascota
+import com.example.veterinaria.data.models.Mascota
 
 class MascotaAdapter(private val mascotaList: List<Mascota>) :
     RecyclerView.Adapter<MascotaAdapter.MascotaViewHolder>() {

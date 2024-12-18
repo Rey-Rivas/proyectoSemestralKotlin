@@ -1,4 +1,4 @@
-package com.example.veterinaria
+package com.example.veterinaria.ui.activities
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -6,8 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.veterinaria.fragments.HomeFragment
-import com.example.veterinaria.fragments.ReminderFragment
+import com.example.veterinaria.R
+import com.example.veterinaria.ui.fragments.HomeFragment
+import com.example.veterinaria.ui.fragments.ReminderFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

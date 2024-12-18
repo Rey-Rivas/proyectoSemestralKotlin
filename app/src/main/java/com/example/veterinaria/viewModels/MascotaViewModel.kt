@@ -3,45 +3,46 @@ package com.example.veterinaria.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.veterinaria.classes.Alergia
-import com.example.veterinaria.classes.Mascota
-import com.example.veterinaria.classes.Raza
-import com.example.veterinaria.classes.RegistroMedico
+import com.example.veterinaria.data.models.Alergia
+import com.example.veterinaria.data.models.Mascota
+import com.example.veterinaria.data.models.Raza
+import com.example.veterinaria.data.models.Especie
+import com.example.veterinaria.data.models.RegistroMedico
+import java.time.LocalDate
+import java.time.Period
+import java.time.ZoneId
 import java.util.Date
 
 class MascotaViewModel : ViewModel() {
     private val _mascota = MutableLiveData<Mascota>()
     val mascota: LiveData<Mascota> = _mascota
 
-    private val _mascotaList = MutableLiveData<List<Mascota>>()
-    val mascotaList: LiveData<List<Mascota>> = _mascotaList
+    private val _alergias = MutableLiveData<List<Alergia>>()
+    val alergia: LiveData<List<Alergia>> = _alergias
 
-    init {
-        val mascota1 = Mascota(1, "Max el destrosa mundos", Date(2001,11,12), "https://static.wikia.nocookie.net/gatopedia/images/2/2e/El_gatoo.png/revision/latest?cb=20230103150310&path-prefix=es", 25.0)
-        val mascota2 = Mascota(2, "Cheems", Date(2000,4,11), "https://static.wikia.nocookie.net/cheems/images/e/e1/Flat%2C750x%2C075%2Cf-pad%2C750x1000%2Cf8f8f8.u2.jpg/revision/latest/scale-to-width-down/750?cb=20200928233506&path-prefix=es", 30.0)
-        val mascota3 = Mascota(3, "Bella", Date(2019,3,2), "https://static.wikia.nocookie.net/gatopedia/images/a/af/Pop1.png/revision/latest?cb=20230105144717&path-prefix=es", 20.0)
 
-        val mascotaList = listOf(mascota1, mascota2, mascota3)
-        _mascotaList.value = mascotaList
+
+    fun setMascota(id: Int, nombre: String, fechaNacimiento: Date, foto: String, peso: Double, especie: Especie, raza: Raza, registroMedico: RegistroMedico) {
+        _mascota.value = Mascota(id, nombre, fechaNacimiento, foto, peso, especie, raza, registroMedico)
     }
 
-    fun setMascota(id: Int, nombre: String, fechaNacimiento: Date, foto: String, peso: Double){//, raza: Raza, registroMedico: RegistroMedico) {
-        _mascota.value = Mascota(id, nombre, fechaNacimiento, foto, peso)//, raza, registroMedico)
+    fun getEdad(): Int {
+        val fechaNacimiento = _mascota.value?.fechaNacimiento
+        if (fechaNacimiento != null) {
+            val hoy = LocalDate.now()
+            return Period.between(fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), hoy).years
+        }
+        return 0
     }
 
-    fun setMascotaList(mascotas: List<Mascota>) {
-        _mascotaList.value = mascotas
-    }
-
-    fun calcularEdad(): Int {
-        val today = Date()
-        val diff = today.time - _mascota.value?.fechaNacimiento?.time!!
-        val age = diff / (1000L * 60 * 60 * 24 * 365)
-        return age.toInt()
-    }
-
-    fun alergias(): List<Alergia> {
-        // Lógica para obtener alergias de la mascota
-        return listOf() // Ejemplo de retorno
+    fun getAlergias(): List<Alergia> {
+        val mascotaId = _mascota.value?.id
+        return if (mascotaId != null) {
+            _alergias.value?.filter { alergia ->
+                alergia.mascotas.any { it.id == mascotaId }
+            } ?: listOf()
+        } else {
+            listOf()
+        }
     }
 }
