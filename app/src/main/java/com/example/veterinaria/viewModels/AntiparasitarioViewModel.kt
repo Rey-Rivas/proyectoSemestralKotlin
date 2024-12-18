@@ -3,7 +3,7 @@ package com.example.veterinaria.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.veterinaria.classes.Antiparasitario
+import com.example.veterinaria.data.models.Antiparasitario
 import java.util.Date
 
 class AntiparasitarioViewModel : ViewModel() {

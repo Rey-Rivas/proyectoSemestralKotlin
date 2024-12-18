@@ -3,9 +3,9 @@ package com.example.veterinaria.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.veterinaria.classes.Especie
-import com.example.veterinaria.classes.Mascota
-import com.example.veterinaria.classes.Raza
+import com.example.veterinaria.data.models.Especie
+import com.example.veterinaria.data.models.Mascota
+import com.example.veterinaria.data.models.Raza
 
 class RazaViewModel : ViewModel() {
     private val _raza = MutableLiveData<Raza>()

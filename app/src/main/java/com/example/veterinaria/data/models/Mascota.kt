@@ -1,4 +1,4 @@
-package com.example.veterinaria.classes
+package com.example.veterinaria.data.models
 import java.util.Date
 
 data class Mascota(

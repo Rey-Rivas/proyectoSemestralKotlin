@@ -1,4 +1,4 @@
-package com.example.veterinaria.fragments
+package com.example.veterinaria.ui.fragments
 
 import androidx.fragment.app.Fragment
 

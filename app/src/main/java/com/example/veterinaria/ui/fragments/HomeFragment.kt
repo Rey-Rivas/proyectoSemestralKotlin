@@ -1,4 +1,4 @@
-package com.example.veterinaria.fragments
+package com.example.veterinaria.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

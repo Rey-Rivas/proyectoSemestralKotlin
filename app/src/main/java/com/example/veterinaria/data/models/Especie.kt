@@ -1,4 +1,4 @@
-package com.example.veterinaria.classes
+package com.example.veterinaria.data.models
 
 data class Especie (
     val idEspecie: Int,
