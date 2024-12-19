@@ -16,7 +16,7 @@ class EspecieViewModel : ViewModel() {
     }
 
     fun listarRazas(): List<Raza>? {
-        return _especie.value?.raza
+        //return _especie.value?.raza
     }
 
     fun obtenerMascotasPorEspecie(mascotas: List<Mascota>): List<String> {
