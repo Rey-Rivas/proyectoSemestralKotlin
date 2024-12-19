@@ -2,7 +2,7 @@ package com.example.veterinaria.classes
 
 import java.util.Date
 
-open class Consulta (
+open class consConsulta (
     val idConsulta: Int,
     val motivo: String,
     val diagnostico: String,
