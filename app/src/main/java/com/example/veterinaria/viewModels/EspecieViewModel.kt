@@ -9,18 +9,23 @@ import com.example.veterinaria.classes.Raza
 
 class EspecieViewModel : ViewModel() {
     private val _especie = MutableLiveData<Especie>()
-    val raza: LiveData<Especie> = _especie
+    val especie: LiveData<Especie> = _especie
 
     fun setEspecie(id: Int, nombre: String) {
         _especie.value = Especie(id, nombre)
     }
 
-    fun obtenerRaza(): List<Raza>? {
-       // return _especie.value?.raza
-        return null
+    fun listarRazas(): List<Raza>? {
+        return _especie.value?.raza
     }
 
-    fun listarMascotasPorEspecie(): List<String> {
-        return listOf()
+    fun obtenerMascotasPorEspecie(mascotas: List<Mascota>): List<String> {
+        val especieActual = _especie.value
+        return if (especieActual != null) {
+            mascotas.filter { it.raza.especie.contains(especieActual) }
+                   .map { it.nombre }
+        } else {
+            emptyList()
+        }
     }
 }
