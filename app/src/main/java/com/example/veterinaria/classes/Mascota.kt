@@ -10,23 +10,24 @@ data class Mascota (
     val fechaNacimiento: Date, // Usar formato de fecha adecuado
     val foto: String, // Ruta de la foto
     val peso: Double,
-    val raza: Raza, // Reference to Raza
-    //val registroMedico: RegistroMedico
+    val raza: Raza // Reference to Raza
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString().toString(),
-        TODO("fechaNacimiento"),
+        Date(parcel.readLong()), // Convert long to Date
         parcel.readString().toString(),
-        parcel.readDouble()
-    ) {
-    }
+        parcel.readDouble(),
+        parcel.readParcelable(Raza::class.java.classLoader)!! // Read Raza from Parcel
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
         parcel.writeString(nombre)
+        parcel.writeLong(fechaNacimiento.time) // Convert Date to long
         parcel.writeString(foto)
         parcel.writeDouble(peso)
+        parcel.writeParcelable(raza, flags) // Write Raza to Parcel
     }
 
     override fun describeContents(): Int {
