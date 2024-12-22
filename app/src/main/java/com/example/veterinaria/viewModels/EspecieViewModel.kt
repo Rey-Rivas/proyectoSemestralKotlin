@@ -11,12 +11,21 @@ class EspecieViewModel : ViewModel() {
     private val _especie = MutableLiveData<Especie>()
     val especie: LiveData<Especie> = _especie
 
-    fun setEspecie(id: Int, nombre: String) {
+    private val _razas = MutableLiveData<List<Raza>>()
+    val razas: LiveData<List<Raza>> = _razas
+
+    fun setEspecie(id: Int, nombre: String, razas: List<Raza>) {
         _especie.value = Especie(id, nombre)
+        _razas.value = razas
     }
 
-    fun listarRazas(): List<Raza>? {
-        //return _especie.value?.raza
+    fun listarRaza(): Raza? {
+        val especieActual = _especie.value
+        return if (especieActual != null) {
+            _razas.value?.find { raza -> raza.especie.contains(especieActual) }
+        } else {
+            null
+        }
     }
 
     fun obtenerMascotasPorEspecie(mascotas: List<Mascota>): List<String> {

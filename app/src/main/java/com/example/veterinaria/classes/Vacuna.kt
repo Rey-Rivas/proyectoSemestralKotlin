@@ -4,7 +4,16 @@ import java.util.Date
 
 class Vacuna(
     val tipoVacuna: String,
-    id: Int,
+    idTratamiento: Int,
     fecha: Date,
     proximaDosis: Date
-) : Tratamiento(id, fecha, proximaDosis)
+) : Tratamiento(idTratamiento, fecha, proximaDosis) {
+    fun copyWith(
+        tipoVacuna: String = this.tipoVacuna,
+        idTratamiento: Int = this.idTratamiento,
+        fecha: Date = this.fecha,
+        proximaDosis: Date = this.proximaDosis
+    ): Vacuna {
+        return Vacuna(tipoVacuna, idTratamiento, fecha, proximaDosis)
+    }
+}
