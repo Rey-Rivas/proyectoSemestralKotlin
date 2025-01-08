@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.veterinaria.adapters.MascotaAdapter
 import com.example.veterinaria.databinding.FragmentHomeBinding
 import com.example.veterinaria.viewModels.MascotaViewModel
+import com.example.veterinaria.R
 
 class HomeFragment : Fragment() {
     private val mascotaViewModel = MascotaViewModel()
@@ -28,7 +30,18 @@ class HomeFragment : Fragment() {
         recyclerView?.layoutManager = LinearLayoutManager(context)
 
         mascotaViewModel.mascotaList.observe(viewLifecycleOwner, Observer { mascotas ->
-            recyclerView?.adapter = MascotaAdapter(mascotas)
+            recyclerView?.adapter = MascotaAdapter(mascotas) { mascota ->
+                val bundle = Bundle().apply {
+                    putParcelable("mascota", mascota)
+                }
+                val medicalHistoryFragment = MedicalHistoryFragment()
+                medicalHistoryFragment.arguments = bundle
+
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, medicalHistoryFragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
         })
 
         return _binding?.root

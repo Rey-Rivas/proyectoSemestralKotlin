@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.veterinaria.databinding.ItemMascotaBinding
 import com.example.veterinaria.classes.Mascota
 
-class MascotaAdapter(private val mascotaList: List<Mascota>) :
-    RecyclerView.Adapter<MascotaAdapter.MascotaViewHolder>() {
+class MascotaAdapter(
+    private val mascotaList: List<Mascota>,
+    private val onItemClick: (Mascota) -> Unit // Listener para manejar los clics
+) : RecyclerView.Adapter<MascotaAdapter.MascotaViewHolder>() {
 
     class MascotaViewHolder(val binding: ItemMascotaBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -20,6 +22,11 @@ class MascotaAdapter(private val mascotaList: List<Mascota>) :
         val mascota = mascotaList[position]
         holder.binding.mascota = mascota
         holder.binding.executePendingBindings()
+
+        // Configurar el clic en el elemento
+        holder.binding.root.setOnClickListener {
+            onItemClick(mascota)
+        }
     }
 
     override fun getItemCount() = mascotaList.size

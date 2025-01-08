@@ -2,9 +2,18 @@ package com.example.veterinaria.classes
 
 import java.util.Date
 
-class Antiparasitario (
+class Antiparasitario(
     val tipoAntiparasitario: String,
     idTratamiento: Int,
     fecha: Date,
     proximaDosis: Date
-) : Tratamiento(idTratamiento, fecha, proximaDosis)
+) : Tratamiento(idTratamiento, fecha, proximaDosis) {
+    fun copyWith(
+        tipoAntiparasitario: String = this.tipoAntiparasitario,
+        idTratamiento: Int = this.idTratamiento,
+        fecha: Date = this.fecha,
+        proximaDosis: Date = this.proximaDosis
+    ): Antiparasitario {
+        return Antiparasitario(tipoAntiparasitario, idTratamiento, fecha, proximaDosis)
+    }
+}

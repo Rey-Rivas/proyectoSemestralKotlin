@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+        bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
                     supportFragmentManager.beginTransaction()
