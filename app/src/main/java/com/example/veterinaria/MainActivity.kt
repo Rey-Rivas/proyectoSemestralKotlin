@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.room.Room
+import com.example.veterinaria.database.AppDatabase
 import com.example.veterinaria.fragments.ConsultFragment
 import com.example.veterinaria.fragments.HomeFragment
 import com.example.veterinaria.fragments.TreatmentFragment
@@ -14,6 +16,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        lateinit var database: AppDatabase
+            private set
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -80,5 +87,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-   }
+
+        // Initialize the Room database
+        database = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java,
+            "veterinaria_database"
+        ).build()
+    }
 }

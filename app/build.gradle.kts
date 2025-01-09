@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android) version "2.0.21"
     id("com.google.devtools.ksp") version "2.0.21-1.0.27"
     id("org.jetbrains.kotlin.kapt")
+    id("kotlin-kapt")
 }
 
 android {
@@ -58,9 +59,10 @@ dependencies {
     val room_version = "2.6.1"
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     implementation ("androidx.activity:activity-ktx:$activity_version")
+    implementation("com.google.code.gson:gson:2.8.9")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
     kapt ("com.github.bumptech.glide:compiler:4.12.0")
-    ksp("androidx.room:room-compiler:$room_version")
+    kapt ("androidx.room:room-compiler:$room_version")
 }

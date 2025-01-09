@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.veterinaria.adapters.MascotaAdapter
 import com.example.veterinaria.databinding.FragmentHomeBinding
@@ -14,7 +14,7 @@ import com.example.veterinaria.viewModels.MascotaViewModel
 import com.example.veterinaria.R
 
 class HomeFragment : Fragment() {
-    private val mascotaViewModel = MascotaViewModel()
+    private lateinit var mascotaViewModel: MascotaViewModel
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -24,6 +24,9 @@ class HomeFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         _binding?.lifecycleOwner = this
+
+        // Initialize the ViewModel
+        mascotaViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(MascotaViewModel::class.java)
         _binding?.mascotaViewModel = mascotaViewModel
 
         val recyclerView = _binding?.mascotaRecyclerView
