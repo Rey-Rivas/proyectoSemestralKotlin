@@ -73,6 +73,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="date"
+        android:focusable="false"
+        android:clickable="true"
         android:text="Fecha de Nacimiento"
         app:layout_constraintBottom_toTopOf="@+id/editTextText3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,5 +93,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.21"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText5"
+        app:layout_constraintVertical_bias="0.1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

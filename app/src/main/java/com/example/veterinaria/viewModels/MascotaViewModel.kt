@@ -9,10 +9,13 @@ import com.example.veterinaria.MainActivity
 import com.example.veterinaria.classes.Alergia
 import com.example.veterinaria.classes.Mascota
 import com.example.veterinaria.classes.Raza
+import com.example.veterinaria.database.AppDatabase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
 
 class MascotaViewModel(application: Application) : AndroidViewModel(application) {
+    private val mascotaDao = AppDatabase.getDatabase(application).mascotaDao()
     private val _mascota = MutableLiveData<Mascota>()
     val mascota: LiveData<Mascota> = _mascota
 
@@ -25,8 +28,10 @@ class MascotaViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun setMascota(id: Int, nombre: String, fechaNacimiento: Date, foto: String, peso: Double, raza: Raza) {
-        _mascota.value = Mascota(id, nombre, fechaNacimiento, foto, peso, raza)
+    fun insertMascota(mascota: Mascota) {
+        viewModelScope.launch(Dispatchers.IO) {
+            mascotaDao.insert(mascota)
+        }
     }
 
     fun setMascotaList(mascotas: List<Mascota>) {
