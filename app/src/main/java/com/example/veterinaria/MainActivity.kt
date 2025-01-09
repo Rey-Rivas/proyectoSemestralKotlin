@@ -1,5 +1,6 @@
 package com.example.veterinaria
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import com.example.veterinaria.fragments.ConsultFragment
 import com.example.veterinaria.fragments.HomeFragment
 import com.example.veterinaria.fragments.TreatmentFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,13 +36,13 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
-                R.id.navigation_treatment-> {
+                R.id.navigation_treatment -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, TreatmentFragment())
                         .commit()
                     true
                 }
-                R.id.navigation_consult-> {
+                R.id.navigation_consult -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, ConsultFragment())
                         .commit()
@@ -54,5 +56,29 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             bottomNavigationView.selectedItemId = R.id.navigation_home
         }
-    }
+
+        val fab: FloatingActionButton = findViewById(R.id.fab)
+        fab.setOnClickListener {
+            val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+            when (currentFragment) {
+                is ConsultFragment -> {
+                    val intent = Intent(this, CreateConsultActivity::class.java)
+                    startActivity(intent)
+                }
+
+                is TreatmentFragment -> {
+                    val intent = Intent(this, CreateTreatmentActivity::class.java)
+                    startActivity(intent)
+                }
+
+                is HomeFragment -> {
+                    val intent = Intent(this, CreateChartActivity::class.java)
+                    startActivity(intent)
+                }
+                else -> {
+                    // Default action
+                }
+            }
+        }
+   }
 }

@@ -24,6 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CreateChartActivity" android:exported="true" />
+        <activity android:name=".CreateTreatmentActivity" android:exported="true" />
+        <activity android:name=".CreateConsultActivity" android:exported="true" />
     </application>
 
 </manifest>

@@ -5,6 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:title="Agregar Tratamiento"
+        app:navigationIcon="@drawable/ic_back"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
     <EditText
         android:id="@+id/editTextDate2"
         android:layout_width="wrap_content"
@@ -20,18 +28,6 @@
         app:layout_constraintVertical_bias="0.016" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="214dp"
-        android:layout_height="33dp"
-        android:text="Agregar Tratamiento"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="335dp"
         android:layout_height="22dp"
@@ -41,7 +37,7 @@
         app:layout_constraintHorizontal_bias="0.21"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.077" />
+        app:layout_constraintVertical_bias="0.09" />
 
     <EditText
         android:id="@+id/editTextDate"
