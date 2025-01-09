@@ -50,4 +50,13 @@ class MascotaViewModel : ViewModel() {
             emptyList()
         }
     }
+
+    fun updateMascota(mascota: Mascota?) {
+        mascota?.let {
+            _mascota.value = it
+            _mascotaList.value = _mascotaList.value?.map { existingMascota ->
+                if (existingMascota.id == it.id) it else existingMascota
+            }
+        }
+    }
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.veterinaria.R
 import com.example.veterinaria.classes.Mascota
 import com.example.veterinaria.databinding.FragmentMedicalHistoryBinding
 
@@ -26,6 +27,19 @@ class MedicalHistoryFragment : Fragment() {
     ): View? {
         _binding = FragmentMedicalHistoryBinding.inflate(inflater, container, false)
         binding.mascota = mascota // Enlazar los datos
+        // Configurar el botón de edición
+        binding.btnEditMascota.setOnClickListener {
+            val bundle = Bundle().apply {
+                putParcelable("mascota", mascota)
+            }
+            val editMascotaFragment = EditMascotaFragment()
+            editMascotaFragment.arguments = bundle
+
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, editMascotaFragment)
+                .addToBackStack(null)
+                .commit()
+        }
         return binding.root
     }
 
