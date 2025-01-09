@@ -6,8 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.veterinaria.fragments.ConsultFragment
 import com.example.veterinaria.fragments.HomeFragment
-import com.example.veterinaria.fragments.ReminderFragment
+import com.example.veterinaria.fragments.TreatmentFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -33,9 +34,15 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
-                R.id.navigation_reminder -> {
+                R.id.navigation_treatment-> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, ReminderFragment())
+                        .replace(R.id.fragment_container, TreatmentFragment())
+                        .commit()
+                    true
+                }
+                R.id.navigation_consult-> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, ConsultFragment())
                         .commit()
                     true
                 }
