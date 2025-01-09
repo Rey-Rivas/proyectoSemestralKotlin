@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 data class Raza(
     val idRaza: Int,
-    val nombre: String,
+    var nombre: String,
     val especie: List<Especie>
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
